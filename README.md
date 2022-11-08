@@ -5,7 +5,7 @@ This action setup git credentials in the runner to access private git repositori
 ## Usage
 
 ```yaml
-- uses: SanthoshNath/setup-git-credentials
+- uses: SanthoshNath/setup-git-credentials@v1
   with:
     # Token to access private repos
     token: ''

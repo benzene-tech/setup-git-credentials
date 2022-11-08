@@ -1,15 +1,16 @@
-name: 'Setup Git credentials'
-description: 'Action to setup git credentials'
+name: Setup Git credentials
+description: Action to setup git credentials
+
 inputs:
   token:
-    description: 'Access token'
+    description: Access token
     required: true
-    default: ''
   host:
-    description: 'Git host'
-    required: true
-    default: 'github.com'
+    description: Git host
+    required: false
+    default: github.com
+
 runs:
-  using: 'node16'
-  main: 'dist/main/index.js'
-  post: 'dist/post/index.js'
+  using: node16
+  main: dist/index.js
+  post: dist/index.js
