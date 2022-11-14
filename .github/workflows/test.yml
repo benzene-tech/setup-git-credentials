@@ -1,0 +1,62 @@
+name: Test Action
+
+on:
+  push:
+    branches:
+      - "master"
+    paths-ignore:
+      - "**.md"
+      - ".gitignore"
+  pull_request:
+    branches:
+      - "master"
+    paths-ignore:
+      - "**.md"
+      - ".gitignore"
+
+concurrency: ${{ github.ref }}
+
+jobs:
+  check-dist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Rebuild the index.js file
+        run: npm run build
+
+      - name: Compare the expected and actual dist/ directories
+        run: |
+          if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
+            echo "Detected uncommitted changes after build.  See status below:"
+            git diff
+            exit 1
+          fi
+
+  test-1:
+    name: Set config with default host
+    runs-on: ${{ matrix.os }}
+    needs: check-dist
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Git credentials
+        uses: ./
+        with:
+          token: abcd1234
+
+      - name: Check git config
+        run: git config --get-regexp url.https://abcd1234@github.com.insteadOf
