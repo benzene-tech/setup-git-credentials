@@ -3,13 +3,13 @@ name: Test Action
 on:
   push:
     branches:
-      - "master"
+      - "main"
     paths-ignore:
       - "**.md"
       - ".gitignore"
   pull_request:
     branches:
-      - "master"
+      - "main"
     paths-ignore:
       - "**.md"
       - ".gitignore"
