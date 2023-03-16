@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SanthoshNath/setup-git-credentials.git"
+    "url": "git+https://github.com/benzene-tech/setup-git-credentials.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SanthoshNath/setup-git-credentials/issues"
+    "url": "https://github.com/benzene-tech/setup-git-credentials/issues"
   },
-  "homepage": "https://github.com/SanthoshNath/setup-git-credentials#readme",
+  "homepage": "https://github.com/benzene-tech/setup-git-credentials#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
